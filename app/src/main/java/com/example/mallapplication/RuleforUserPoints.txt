@@ -1,0 +1,11 @@
+Visit           1 Point
+
+Rate            (Star * 2) Points
+
+Review          3 Points
+
+Purchase        4 Points
+
+Search          1 Point
+
+Read            1 Point every minute
