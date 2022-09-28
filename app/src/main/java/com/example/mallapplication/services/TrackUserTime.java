@@ -5,15 +5,11 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
-import androidx.annotation.LongDef;
 import androidx.annotation.Nullable;
 
-import com.example.mallapplication.GroceryItem;
+import com.example.mallapplication.Database.GroceryItem;
 import com.example.mallapplication.Utils;
-
-import java.io.Console;
 
 public class TrackUserTime extends Service {
 

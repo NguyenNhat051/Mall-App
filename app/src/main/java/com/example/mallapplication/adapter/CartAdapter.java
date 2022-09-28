@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mallapplication.GroceryItem;
+import com.example.mallapplication.Database.GroceryItem;
 import com.example.mallapplication.R;
 
 import java.util.ArrayList;

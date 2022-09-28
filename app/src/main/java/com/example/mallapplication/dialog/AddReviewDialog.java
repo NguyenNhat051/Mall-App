@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.mallapplication.GroceryItem;
+import com.example.mallapplication.Database.GroceryItem;
 import com.example.mallapplication.R;
 import com.example.mallapplication.Review;
 

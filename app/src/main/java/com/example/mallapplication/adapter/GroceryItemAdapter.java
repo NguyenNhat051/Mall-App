@@ -15,7 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.mallapplication.GroceryItem;
+import com.example.mallapplication.Database.GroceryItem;
 import com.example.mallapplication.activity.GroceryItemActivity;
 import com.example.mallapplication.R;
 

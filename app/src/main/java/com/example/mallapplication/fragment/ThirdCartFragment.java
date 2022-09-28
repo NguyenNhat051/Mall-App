@@ -15,11 +15,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.mallapplication.GroceryItem;
+import com.example.mallapplication.Database.GroceryItem;
 import com.example.mallapplication.Order;
 import com.example.mallapplication.OrderEndPoint;
 import com.example.mallapplication.R;
-import com.example.mallapplication.fragment.SecondCartFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

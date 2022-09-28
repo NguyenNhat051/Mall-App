@@ -1,5 +1,7 @@
 package com.example.mallapplication;
 
+import com.example.mallapplication.Database.GroceryItem;
+
 import java.util.ArrayList;
 
 public class Order {

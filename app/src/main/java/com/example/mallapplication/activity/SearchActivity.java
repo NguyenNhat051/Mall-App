@@ -18,7 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mallapplication.GroceryItem;
+import com.example.mallapplication.Database.GroceryItem;
 import com.example.mallapplication.R;
 import com.example.mallapplication.Utils;
 import com.example.mallapplication.adapter.GroceryItemAdapter;
