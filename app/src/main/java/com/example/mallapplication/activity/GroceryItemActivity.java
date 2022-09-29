@@ -9,9 +9,11 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -51,11 +53,10 @@ public class GroceryItemActivity extends AppCompatActivity implements AddReviewD
 
     private RecyclerView reviewsRecView;
     private TextView txtName, txtPrice, txtDescription, txtAddReview;
-    private ImageView itemImage, firstEmptyStar, firstFilledStar, secondEmptyStar, secondFilledStar,
-            thirdEmptyStar, thirdFilledStar, fourthEmptyStar, fourthFilledStar, fifthEmptyStar, fifthFilledStar;
+    private ImageView itemImage;
     private Button btnAddToCart;
-    private RelativeLayout firstStarRelLayout, secondStarRelLayout, thirdStarRelLayout, fourthStarRelLayout, fifthStarRelLayout;
     private MaterialToolbar toolbar;
+    private RatingBar ratingBar;
 
     private GroceryItem incomingItem;
 
@@ -117,129 +118,25 @@ public class GroceryItemActivity extends AppCompatActivity implements AddReviewD
                 }
             });
 
-            handleRating();
+            ratingBar.setRating(incomingItem.getRate());
+
+            ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+                @Override
+                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                    if (fromUser) {
+                        Utils.changeRate(GroceryItemActivity.this, incomingItem.getId(), (int) rating);
+                        Utils.changeUserPoint(GroceryItemActivity.this, incomingItem, ((int) rating - incomingItem.getRate()) * 2);
+                        incomingItem.setRate((int) rating);
+                        finish();
+                        overridePendingTransition(0, 0);
+                        startActivity(getIntent());
+                        overridePendingTransition(0, 0);
+                    }
+                }
+            });
         }
     }
 
-    private void handleRating() {
-        switch (incomingItem.getRate()) {
-            case 0:
-                firstEmptyStar.setVisibility(View.VISIBLE);
-                firstFilledStar.setVisibility(View.GONE);
-                secondEmptyStar.setVisibility(View.VISIBLE);
-                secondFilledStar.setVisibility(View.GONE);
-                thirdEmptyStar.setVisibility(View.VISIBLE);
-                thirdFilledStar.setVisibility(View.GONE);
-                break;
-            case 1:
-                firstEmptyStar.setVisibility(View.GONE);
-                firstFilledStar.setVisibility(View.VISIBLE);
-                secondEmptyStar.setVisibility(View.VISIBLE);
-                secondFilledStar.setVisibility(View.GONE);
-                thirdEmptyStar.setVisibility(View.VISIBLE);
-                thirdFilledStar.setVisibility(View.GONE);
-                break;
-            case 2:
-                firstEmptyStar.setVisibility(View.GONE);
-                firstFilledStar.setVisibility(View.VISIBLE);
-                secondEmptyStar.setVisibility(View.GONE);
-                secondFilledStar.setVisibility(View.VISIBLE);
-                thirdEmptyStar.setVisibility(View.VISIBLE);
-                thirdFilledStar.setVisibility(View.GONE);
-                break;
-            case 3:
-                firstEmptyStar.setVisibility(View.GONE);
-                firstFilledStar.setVisibility(View.VISIBLE);
-                secondEmptyStar.setVisibility(View.GONE);
-                secondFilledStar.setVisibility(View.VISIBLE);
-                thirdEmptyStar.setVisibility(View.GONE);
-                thirdFilledStar.setVisibility(View.VISIBLE);
-                break;
-            case 4:
-                firstEmptyStar.setVisibility(View.GONE);
-                firstFilledStar.setVisibility(View.VISIBLE);
-                secondEmptyStar.setVisibility(View.GONE);
-                secondFilledStar.setVisibility(View.VISIBLE);
-                thirdEmptyStar.setVisibility(View.GONE);
-                thirdFilledStar.setVisibility(View.VISIBLE);
-                fourthEmptyStar.setVisibility(View.GONE);
-                fourthFilledStar.setVisibility(View.VISIBLE);
-                break;
-            case 5:
-                firstEmptyStar.setVisibility(View.GONE);
-                firstFilledStar.setVisibility(View.VISIBLE);
-                secondEmptyStar.setVisibility(View.GONE);
-                secondFilledStar.setVisibility(View.VISIBLE);
-                thirdEmptyStar.setVisibility(View.GONE);
-                thirdFilledStar.setVisibility(View.VISIBLE);
-                fourthEmptyStar.setVisibility(View.GONE);
-                fourthFilledStar.setVisibility(View.VISIBLE);
-                fifthEmptyStar.setVisibility(View.GONE);
-                fifthFilledStar.setVisibility(View.VISIBLE);
-            default:
-                break;
-        }
-
-        firstStarRelLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (incomingItem.getRate() != 1) {
-                    Utils.changeRate(GroceryItemActivity.this, incomingItem.getId(), 1);
-                    Utils.changeUserPoint(GroceryItemActivity.this, incomingItem, (1 - incomingItem.getRate()) * 2);
-                    incomingItem.setRate(1);
-                    handleRating();
-                }
-            }
-        });
-
-        secondStarRelLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (incomingItem.getRate() != 2) {
-                    Utils.changeRate(GroceryItemActivity.this, incomingItem.getId(), 2);
-                    Utils.changeUserPoint(GroceryItemActivity.this, incomingItem, (2 - incomingItem.getRate()) * 2);
-                    incomingItem.setRate(2);
-                    handleRating();
-                }
-            }
-        });
-
-        thirdStarRelLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (incomingItem.getRate() != 3) {
-                    Utils.changeRate(GroceryItemActivity.this, incomingItem.getId(), 3);
-                    Utils.changeUserPoint(GroceryItemActivity.this, incomingItem, (3 - incomingItem.getRate()) * 2);
-                    incomingItem.setRate(3);
-                    handleRating();
-                }
-            }
-        });
-
-        fourthStarRelLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (incomingItem.getRate() != 4) {
-                    Utils.changeRate(GroceryItemActivity.this, incomingItem.getId(), 4);
-                    Utils.changeUserPoint(GroceryItemActivity.this, incomingItem, (4 - incomingItem.getRate()) * 2);
-                    incomingItem.setRate(4);
-                    handleRating();
-                }
-            }
-        });
-
-        fifthStarRelLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (incomingItem.getRate() != 5) {
-                    Utils.changeRate(GroceryItemActivity.this, incomingItem.getId(), 5);
-                    Utils.changeUserPoint(GroceryItemActivity.this, incomingItem, (5 - incomingItem.getRate()) * 2);
-                    incomingItem.setRate(5);
-                    handleRating();
-                }
-            }
-        });
-    }
 
     private void initView() {
         txtName = findViewById(R.id.txtName);
@@ -247,24 +144,10 @@ public class GroceryItemActivity extends AppCompatActivity implements AddReviewD
         txtPrice = findViewById(R.id.txtPrice);
         txtAddReview = findViewById(R.id.txtAddReview);
         itemImage = findViewById(R.id.itemImage);
-        firstEmptyStar = findViewById(R.id.firstEmptyStar);
-        firstFilledStar = findViewById(R.id.firstFilledStar);
-        secondEmptyStar = findViewById(R.id.secondEmptyStar);
-        secondFilledStar = findViewById(R.id.secondFilledStar);
-        thirdEmptyStar = findViewById(R.id.thirdEmptyStar);
-        thirdFilledStar = findViewById(R.id.thirdFilledStar);
-        fourthEmptyStar = findViewById(R.id.fourthEmptyStar);
-        fourthFilledStar = findViewById(R.id.fourthFilledStar);
-        fifthEmptyStar = findViewById(R.id.fifthEmptyStar);
-        fifthFilledStar = findViewById(R.id.fifthFilledStar);
         btnAddToCart = findViewById(R.id.btnAddToCart);
         reviewsRecView = findViewById(R.id.reviewsRecView);
-        firstStarRelLayout = findViewById(R.id.firstStarRelLayout);
-        secondStarRelLayout = findViewById(R.id.secondStarRelLayout);
-        thirdStarRelLayout = findViewById(R.id.thirdStarRelLayout);
-        fourthStarRelLayout = findViewById(R.id.fourthStarRelLayout);
-        fifthStarRelLayout = findViewById(R.id.fifthStarRelLayout);
         toolbar = findViewById(R.id.toolbar);
+        ratingBar = findViewById(R.id.ratingBar);
     }
 
     @Override

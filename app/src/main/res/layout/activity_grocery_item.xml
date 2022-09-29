@@ -67,125 +67,23 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp" />
 
-            <RelativeLayout
-                android:id="@+id/starRelLayout"
+            <RatingBar
+                android:id="@+id/ratingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/itemImage"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="5dp">
-
-                <RelativeLayout
-                    android:id="@+id/firstStarRelLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/firstFilledStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_filled_star"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/firstEmptyStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_empty_star" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/secondStarRelLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/firstStarRelLayout">
-
-                    <ImageView
-                        android:id="@+id/secondFilledStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_filled_star"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/secondEmptyStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_empty_star" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/thirdStarRelLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/secondStarRelLayout">
-
-                    <ImageView
-                        android:id="@+id/thirdFilledStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_filled_star"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/thirdEmptyStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_empty_star" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/fourthStarRelLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/thirdStarRelLayout">
-
-                    <ImageView
-                        android:id="@+id/fourthFilledStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_filled_star"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/fourthEmptyStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_empty_star" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/fifthStarRelLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/fourthStarRelLayout">
-
-                    <ImageView
-                        android:id="@+id/fifthFilledStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_filled_star"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/fifthEmptyStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_empty_star" />
-
-                </RelativeLayout>
-
-            </RelativeLayout>
+                android:layout_marginTop="5dp"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:stepSize="1"
+                android:theme="@style/RatingBar" />
 
             <TextView
                 android:id="@+id/txtDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/starRelLayout"
+                android:layout_below="@+id/ratingBar"
                 android:layout_marginTop="10dp"
                 android:text="Description"
                 android:textStyle="italic" />
@@ -225,6 +123,7 @@
             </RelativeLayout>
 
         </RelativeLayout>
+
 
     </androidx.core.widget.NestedScrollView>
 
